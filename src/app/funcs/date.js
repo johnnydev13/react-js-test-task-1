@@ -1,3 +1,3 @@
 export function getToday() {
-    return new Date().toLocaleDateString();
+    return new Date().toString();
 }

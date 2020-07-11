@@ -11,31 +11,54 @@ import {
     Alert,
 } from 'react-bootstrap';
 import {
-    add as addProduct, defaultProduct,
+    add  as addProduct,
     edit as ediProduct,
-} from "./reducer";
-import { getToday } from "../../app/funcs/date";
+} from './reducer';
+import { getToday } from '../../app/funcs/date';
+import errors from '../../app/errors';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class ProductEdit extends React.Component {
     state = {
+        key:          0,
         id:           0,
-        name:         this.props.name,
+        name:         '',
         creationDate: getToday(),
         description:  '',
         price:        0,
-        updated:      false,
+        isError:      false,
+        errorText:    errors.products.editDefault,
+        isEdit:       false,
     };
 
     static getDerivedStateFromProps(props, state) {
-        if (props.id !== state.id) {
-            return props;
+        if (props.id !== state.key) {
+            let newState = Object.assign({}, props);
+
+            newState = {...state, ...newState};
+            newState.key = props.id;
+
+            return newState;
         }
 
-        return state;
+        return null;
     }
 
     closeForm = () => {
         store.dispatch(addProductHide());
+    };
+
+    handleIdChange = event => {
+        let id = parseInt(event.target.value);
+
+        if (isNaN(id)) {
+            id = 0;
+        }
+
+        this.setState({
+            id: id,
+        });
     };
 
     handleNameChange = event => {
@@ -47,6 +70,12 @@ export default class ProductEdit extends React.Component {
     handleDescriptionChange = event => {
         this.setState({
             description: event.target.value
+        });
+    };
+
+    handleDateChange = date => {
+        this.setState({
+            creationDate: date
         });
     };
 
@@ -63,28 +92,42 @@ export default class ProductEdit extends React.Component {
     };
 
     saveProduct = () => {
+        if (this.state.id <= 0) {
+            return this.setError(true, errors.products.badId);
+        }
+        let exists = store.getState().products.items.filter(product =>
+            product.id === this.state.id
+        );
+
+        if (exists.length > 0) {
+            // Checking if editing a product without changing an ID
+            if (this.state.key !== exists[0].id) {
+                return this.setError(true, errors.products.idExists);
+            }
+        }
         // TODO use some library for validation?
         if (this.state.name.length === 0 || !this.state.description === 0 || this.state.price === 0) {
-            return this.setError(true);
+            return this.setError(true, errors.products.editDefault);
+        }
+
+        if (this.state.isEdit) {
+            this.editProduct();
+        } else {
+            this.addProduct();
         }
 
         this.setError(false);
 
-        if (this.state.id === 0) {
-            this.addProduct();
-        } else {
-            this.editProduct();
-        }
-
-        this.setState(defaultProduct);
+        //this.setState(defaultProduct);
     };
 
     addProduct = () => {
         store.dispatch(addProduct({
+            id:           this.state.id,
             price:        this.state.price,
             name:         this.state.name,
             description:  this.state.description,
-            creationDate: this.state.creationDate,
+            creationDate: this.state.creationDate.toString(),
         }));
     };
 
@@ -94,13 +137,14 @@ export default class ProductEdit extends React.Component {
             price:        this.state.price,
             name:         this.state.name,
             description:  this.state.description,
-            creationDate: this.state.creationDate,
+            creationDate: this.state.creationDate.toString(),
         }));
     };
 
-    setError(isError){
+    setError(isError, text){
         this.setState({
-            isError: isError
+            isError:   isError,
+            errorText: text,
         });
     }
 
@@ -111,9 +155,15 @@ export default class ProductEdit extends React.Component {
 
         return (
             <Alert variant='danger'>
-                Please, check your input data
+                {this.state.errorText}
             </Alert>
         )
+    };
+
+    setGeneratedId = () => {
+        this.setState({
+            id: this.props.nextId
+        })
     };
 
     render() {
@@ -125,10 +175,24 @@ export default class ProductEdit extends React.Component {
             <div className='modal-container'>
                 <Modal.Dialog className='modal'>
                     <Modal.Header closeButton onHide={this.closeForm}>
-                        <Modal.Title>{this.state.id === 0 ? 'Add' : 'Edit'} a product</Modal.Title>
+                        <Modal.Title>
+                            {!this.state.isEdit ? 'Add' : 'Edit'} a product
+                        </Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
+                        <label htmlFor="add-product-id">Product ID {!this.state.isEdit ? <small onClick={this.setGeneratedId} className='dashed-link'>set next generated ID</small> : false}</label>
+                        <InputGroup className="mb-3">
+                            <FormControl
+                                id="add-product-id"
+                                placeholder="[0-9]+"
+                                aria-label="Name of your product"
+                                aria-describedby="basic-addon1"
+                                onChange={this.handleIdChange}
+                                value={this.state.id}
+                                type="number"
+                            />
+                        </InputGroup>
                         <label htmlFor="add-product-name">Product name</label>
                         <InputGroup className="mb-3">
                             <FormControl
@@ -168,11 +232,12 @@ export default class ProductEdit extends React.Component {
 
                         <label htmlFor="add-product-date">Creation Date</label>
                         <InputGroup className="mb-3">
-                            <FormControl
-                                readOnly="readonly"
-                                aria-label="Creation Date"
+                            <DatePicker
                                 id="add-product-date"
-                                value={this.state.creationDate}/>
+                                className="form-control"
+                                selected={new Date(this.state.creationDate)}
+                                onChange={this.handleDateChange}
+                            />
                         </InputGroup>
 
                         {this.showError()}
@@ -180,7 +245,7 @@ export default class ProductEdit extends React.Component {
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.closeForm}>Cancel</Button>
-                        <Button variant={this.state.id === 0 ? 'success' : 'primary'} onClick={this.saveProduct}>{this.state.id === 0 ? 'Add' : 'Update'}</Button>
+                        <Button variant={!this.state.isEdit ? 'success' : 'primary'} onClick={this.saveProduct}>{!this.state.isEdit ? 'Add' : 'Update'}</Button>
                     </Modal.Footer>
                 </Modal.Dialog>
             </div>

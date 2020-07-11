@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
-import ProductsList from './ProductsList'
+import ProductsList from './ProductsList';
+import { getNextId } from './selectors';
 
 const mapStateToProps = state => ({
-    productsList: state.products,
-    modal:        state.modal,
+    productsList:  state.products,
+    nextProductId: getNextId(state.products),
+    modal:         state.modal,
 });
 
 export default connect(

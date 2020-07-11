@@ -7,6 +7,11 @@
   .App-header h1 {
     text-align: center; }
 
+.dashed-link {
+  border-bottom: 1px dashed;
+  cursor: pointer;
+  color: #007bff; }
+
 .modal-container {
   position: fixed;
   width: 100%;
@@ -24,6 +29,13 @@
   }*/ }
   .modal-container .modal-dialog {
     display: block; }
+    .modal-container .modal-dialog label {
+      width: 100%;
+      display: block; }
+    .modal-container .modal-dialog small {
+      float: right; }
+    .modal-container .modal-dialog .react-datepicker-wrapper {
+      width: 100%; }
 
 .modal-container.hidden {
   display: none; }

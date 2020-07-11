@@ -28,16 +28,16 @@ export const productsSlice = createSlice({
             }
         },
         add: (state, action) => {
-            let id = 0;
+            /*let id = 0;
 
             state.items.map(product => id = Math.max(id, product.id));
 
             let product = Object.assign({}, action.payload);
 
-            product.id = ++id;
+            product.id = ++id;*/
 
             return {...state, ...{
-                items: [ ...state.items, product ]
+                items: [ ...state.items, action.payload ]
             }}
         },
         remove: (state, action) => {

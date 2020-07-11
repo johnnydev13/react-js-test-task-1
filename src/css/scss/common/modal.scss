@@ -17,8 +17,20 @@
 
   .modal-dialog {
     display: block;
+
+    label {
+      width: 100%;
+      display: block;
+    }
+    small {
+      float: right;
+    }
+    .react-datepicker-wrapper {
+      width: 100%;
+    }
   }
 }
+
 .modal-container.hidden {
   display: none;
 }

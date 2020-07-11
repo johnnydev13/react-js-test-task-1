@@ -18,29 +18,41 @@ import {
 import {mockupProducts} from '../../app/config';
 
 // generating products mockups
-mockupProducts.map(product =>
+mockupProducts.map((product, index) =>
     store.dispatch(addProduct({
+        id:           ++index,
         price:        product.price,
         name:         product.name,
         description:  product.description,
-        creationDate: new Date(product.creationDate).toLocaleDateString(),
+        creationDate: new Date(product.creationDate).toString(),
     }))
 );
 
 class ProductsList extends React.Component {
     state = {...defaultProduct, ...{
         // another state variables
-
+        isEdit: false,
     }};
 
     addProductForm = () => {
-        this.setState({...this.state, ...defaultProduct});
+        this.setState({
+            ...this.state,
+            ...defaultProduct,
+            ...{
+                id:     0,
+                nextId: this.props.nextProductId,
+                isEdit: false,
+            }
+        });
 
         store.dispatch(editProductShow())
     };
 
     editProductForm = (product) => {
-        this.setState(product);
+        this.setState({...product, ...{
+            isEdit: true,
+            nextId: this.props.nextProductId
+        }});
 
         store.dispatch(editProductShow());
     };
@@ -72,6 +84,8 @@ class ProductsList extends React.Component {
                     description={this.state.description}
                     creationDate={this.state.creationDate}
                     price={this.state.price}
+                    nextId={this.state.nextId}
+                    isEdit={this.state.isEdit}
                     id={this.state.id}/>
             </div>
         );

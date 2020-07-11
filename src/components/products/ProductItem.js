@@ -16,7 +16,7 @@ export default class ProductsList extends React.Component {
                     <Card.Text>
                         {this.props.product.description}
 
-                        <span className='creation-date'>{this.props.product.creationDate}</span>
+                        <span className='creation-date'>{new Date(this.props.product.creationDate).toLocaleDateString()}</span>
                     </Card.Text>
 
                     <div className='control'>
