@@ -1,0 +1,51 @@
+.products-list {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+
+  .product {
+    display: block;
+    width: calc(25% - 10px);
+    min-width: 300px;
+    margin: 5px;
+
+    .card-body {
+      padding-bottom: 160px;
+    }
+    .card-title {
+      text-align: center;
+    }
+
+    .card-footer {
+      margin-bottom: 10px;
+      color: green;
+      font-size: 1.3rem;
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    button:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .creation-date {
+      display: block;
+      font-style: italic;
+      text-align: right;
+    }
+
+    .control {
+      position: absolute;
+      bottom: 1.25em;
+      width: calc(100% - 2.5rem);
+    }
+
+    .card-text {
+
+    }
+  }
+}
+

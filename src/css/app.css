@@ -1,0 +1,65 @@
+/* products styles */
+.App {
+  padding: 20px; }
+
+.App-header {
+  margin-bottom: 20px; }
+  .App-header h1 {
+    text-align: center; }
+
+.modal-container {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  /*.modal-shadow {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }*/ }
+  .modal-container .modal-dialog {
+    display: block; }
+
+.modal-container.hidden {
+  display: none; }
+
+menu .item {
+  width: 100%; }
+
+.products-list {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap; }
+  .products-list .product {
+    display: block;
+    width: calc(25% - 10px);
+    min-width: 300px;
+    margin: 5px; }
+    .products-list .product .card-body {
+      padding-bottom: 160px; }
+    .products-list .product .card-title {
+      text-align: center; }
+    .products-list .product .card-footer {
+      margin-bottom: 10px;
+      color: green;
+      font-size: 1.3rem; }
+    .products-list .product button {
+      width: 100%;
+      margin-bottom: 10px; }
+    .products-list .product button:last-of-type {
+      margin-bottom: 0; }
+    .products-list .product .creation-date {
+      display: block;
+      font-style: italic;
+      text-align: right; }
+    .products-list .product .control {
+      position: absolute;
+      bottom: 1.25em;
+      width: calc(100% - 2.5rem); }
+
+/*# sourceMappingURL=app.css.map */
