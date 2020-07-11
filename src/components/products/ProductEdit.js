@@ -80,12 +80,6 @@ export default class ProductEdit extends React.Component {
     };
 
     addProduct = () => {
-        let id = 0;
-
-        store.getState().products.items.map(product => {
-            id = Math.max(id, product.id);
-        });
-
         store.dispatch(addProduct({
             price:        this.state.price,
             name:         this.state.name,

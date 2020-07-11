@@ -5,14 +5,6 @@ import {
 } from 'react-bootstrap';
 
 export default class ProductsList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    editProduct = () => {
-        console.log('product', this.props.product);
-    };
-
     render() {
         return (
             <Card className='product'>

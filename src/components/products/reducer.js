@@ -30,9 +30,7 @@ export const productsSlice = createSlice({
         add: (state, action) => {
             let id = 0;
 
-            state.items.map(product => {
-                id = Math.max(id, product.id);
-            });
+            state.items.map(product => id = Math.max(id, product.id));
 
             let product = Object.assign({}, action.payload);
 

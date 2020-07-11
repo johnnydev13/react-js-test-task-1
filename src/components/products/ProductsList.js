@@ -8,9 +8,9 @@ import {
 } from 'react-bootstrap';
 
 import {
-    add            as addProduct,
-    remove         as removeProduct,
-    defaultProduct as defaultProduct,
+    add    as addProduct,
+    remove as removeProduct,
+    defaultProduct,
 } from './reducer';
 import {
     show as editProductShow,
@@ -18,14 +18,14 @@ import {
 import {mockupProducts} from '../../app/config';
 
 // generating products mockups
-mockupProducts.map(product => {
+mockupProducts.map(product =>
     store.dispatch(addProduct({
         price:        product.price,
         name:         product.name,
         description:  product.description,
         creationDate: new Date(product.creationDate).toLocaleDateString(),
-    }));
-});
+    }))
+);
 
 class ProductsList extends React.Component {
     state = {...defaultProduct, ...{
