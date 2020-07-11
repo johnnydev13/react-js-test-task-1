@@ -50,7 +50,7 @@ export default class ProductEdit extends React.Component {
     };
 
     handleIdChange = event => {
-        let id = parseInt(event.target.value);
+        let id = parseFloat(event.target.value);
 
         if (isNaN(id)) {
             id = 0;
@@ -80,7 +80,7 @@ export default class ProductEdit extends React.Component {
     };
 
     handlePriceChange = event => {
-        let price = parseInt(event.target.value);
+        let price = parseFloat(event.target.value);
 
         if (isNaN(price)) {
             price = 0;
