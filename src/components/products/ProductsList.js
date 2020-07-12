@@ -16,6 +16,14 @@ import {
     show as editProductShow,
 } from '../common/modal/actions';
 import {mockupProducts} from '../../app/config';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+} from "react-router-dom";
 
 // generating products mockups
 mockupProducts.map((product, index) =>
@@ -28,7 +36,7 @@ mockupProducts.map((product, index) =>
     }))
 );
 
-class ProductsList extends React.Component {
+export default class ProductsList extends React.Component {
     state = {...defaultProduct, ...{
         // another state variables
         isEdit: false,
@@ -92,7 +100,4 @@ class ProductsList extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    null
-)(ProductsList);
+

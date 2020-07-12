@@ -10,7 +10,7 @@ export default class ProductsList extends React.Component {
             <Card className='product'>
                 <Card.Body>
                     <Card.Title>
-                        {this.props.product.name}
+                        [{this.props.product.id}] {this.props.product.name}
                     </Card.Title>
 
                     <Card.Text>

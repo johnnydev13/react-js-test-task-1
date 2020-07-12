@@ -138,6 +138,7 @@ export default class ProductEdit extends React.Component {
             name:         this.state.name,
             description:  this.state.description,
             creationDate: this.state.creationDate.toString(),
+            prevId:       this.state.key,
         }));
     };
 

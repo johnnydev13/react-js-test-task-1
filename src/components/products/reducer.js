@@ -20,7 +20,7 @@ export const productsSlice = createSlice({
             return {
                 ...state, ...{
                     items: state.items.map(product => {
-                        return (product.id === action.payload.id)
+                        return (product.id === action.payload.prevId)
                             ? action.payload
                             : product
                     })
