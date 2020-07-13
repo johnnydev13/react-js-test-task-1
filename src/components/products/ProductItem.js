@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-export default class ProductsList extends React.Component {
+export default class ProductsItem extends React.Component {
     render() {
         return (
             <Card className='product'>

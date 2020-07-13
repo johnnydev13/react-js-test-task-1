@@ -5,7 +5,6 @@ import ProductEdit from './ProductEdit';
 import {
     Button,
 } from 'react-bootstrap';
-
 import {
     add    as addProduct,
     remove as removeProduct,
@@ -15,7 +14,6 @@ import {
     show as editProductShow,
 } from '../common/modal/actions';
 import {mockupProducts} from '../../app/config';
-
 
 // generating products mockups
 mockupProducts.map((product, index) =>

@@ -19,9 +19,6 @@ class ProductShow extends React.Component {
     componentDidMount() {
         const productId = parseInt(this.props.match.params.productId);
 
-        console.log(this.props.productsList);
-        console.log(productId);
-
         this.getProduct(productId);
     }
 
