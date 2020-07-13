@@ -1,9 +1,8 @@
 import React from 'react';
 import routes from "../app/routes";
-
 import {
     Switch,
-    Route
+    Route,
 } from "react-router-dom";
 
 export default class MainSection extends React.Component {

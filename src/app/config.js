@@ -30,3 +30,15 @@ export const mockupProducts = [
         creationDate: '1993-01-01',
     },
 ];
+
+export const menu = [
+    {
+        title: 'Home',
+        link:  '/'
+    },
+    {
+        title: 'Products',
+        link:  '/products'
+    }
+];
+

@@ -2,10 +2,8 @@
 .App {
   padding: 20px; }
 
-.App-header {
-  margin-bottom: 20px; }
-  .App-header h1 {
-    text-align: center; }
+.App-header h1 {
+  text-align: center; }
 
 .dashed-link {
   border-bottom: 1px dashed;
@@ -43,6 +41,9 @@
 menu .item {
   width: 100%; }
 
+.home {
+  background: #fff; }
+
 .products-list {
   display: flex;
   flex-direction: row;
@@ -74,12 +75,14 @@ menu .item {
       bottom: 1.25em;
       width: calc(100% - 2.5rem); }
 
-.product-show .price {
-  color: green;
-  font-size: 2rem;
-  margin-bottom: 10px; }
-.product-show .creation-date .value {
-  padding-left: 10px;
-  font-style: italic; }
+.product-show {
+  background: #fff; }
+  .product-show .price {
+    color: green;
+    font-size: 2rem;
+    margin-bottom: 10px; }
+  .product-show .creation-date .value {
+    padding-left: 10px;
+    font-style: italic; }
 
 /*# sourceMappingURL=app.css.map */
