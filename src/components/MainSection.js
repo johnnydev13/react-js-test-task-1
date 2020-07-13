@@ -7,9 +7,11 @@ import {
 } from "react-router-dom";
 
 export default class MainSection extends React.Component {
+    getBreadcrumbs = () => {
+
+    };
 
     render() {
-
         return (
             <Switch>
                 {routes.map(({ path, Component }, key) => (

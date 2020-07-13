@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import MainSection from "./containers/MainSection";
+import MainSection from "./components/MainSection";
 
 import {
     BrowserRouter as Router,

@@ -7,7 +7,7 @@ export const mockupProducts = [
     },
     {
         name:         'A paddle',
-        description:  'Ф tool used for pushing against liquids, either as a form of propulsion of a boat (paddling) or as an implement for mixing.',
+        description:  'A tool used for pushing against liquids, either as a form of propulsion of a boat (paddling) or as an implement for mixing.',
         price:        89.99,
         creationDate: '1965-11-04',
     },
