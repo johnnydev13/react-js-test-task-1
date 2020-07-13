@@ -1,6 +1,5 @@
 import React from 'react';
-import ProductsContainer from "./products/ProductsContainer";
-import ProductShowContainer from "./products/productsShow/ProductShowContainer";
+import routes from "../app/routes";
 
 import {
     Switch,
@@ -13,12 +12,9 @@ export default class MainSection extends React.Component {
 
         return (
             <Switch>
-                <Route path='/products/:productId'>
-                    <ProductShowContainer/>
-                </Route>
-                <Route path='/products'>
-                    <ProductsContainer/>
-                </Route>
+                {routes.map(({ path, Component }, key) => (
+                    <Route exact path={path} key={key} component={Component} />
+                ))}
             </Switch>
         );
     }
