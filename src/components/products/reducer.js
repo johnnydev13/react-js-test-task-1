@@ -28,14 +28,6 @@ export const productsSlice = createSlice({
             }
         },
         add: (state, action) => {
-            /*let id = 0;
-
-            state.items.map(product => id = Math.max(id, product.id));
-
-            let product = Object.assign({}, action.payload);
-
-            product.id = ++id;*/
-
             return {...state, ...{
                 items: [ ...state.items, action.payload ]
             }}
@@ -53,5 +45,7 @@ export const productsSlice = createSlice({
 });
 
 export const { edit, add, remove} = productsSlice.actions;
+
+export const initialState = productsSlice.initialState;
 
 export default productsSlice.reducer;
