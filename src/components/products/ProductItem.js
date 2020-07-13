@@ -3,6 +3,7 @@ import {
     Card,
     Button,
 } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default class ProductsList extends React.Component {
     render() {
@@ -10,7 +11,10 @@ export default class ProductsList extends React.Component {
             <Card className='product'>
                 <Card.Body>
                     <Card.Title>
-                        [{this.props.product.id}] {this.props.product.name}
+                        <Link to={"/products/" + this.props.product.id}>
+                            [{this.props.product.id}] {this.props.product.name}
+                        </Link>
+
                     </Card.Title>
 
                     <Card.Text>

@@ -74,4 +74,12 @@ menu .item {
       bottom: 1.25em;
       width: calc(100% - 2.5rem); }
 
+.product-show .price {
+  color: green;
+  font-size: 2rem;
+  margin-bottom: 10px; }
+.product-show .creation-date .value {
+  padding-left: 10px;
+  font-style: italic; }
+
 /*# sourceMappingURL=app.css.map */

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import store from '../../app/store';
 import ProductItem from './ProductItem';
 import ProductEdit from './ProductEdit';
@@ -16,14 +15,7 @@ import {
     show as editProductShow,
 } from '../common/modal/actions';
 import {mockupProducts} from '../../app/config';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams
-} from "react-router-dom";
+
 
 // generating products mockups
 mockupProducts.map((product, index) =>
