@@ -1,5 +1,4 @@
 import React from 'react';
-import store from '../../app/store';
 import { Link } from 'react-router-dom';
 import {
     Jumbotron,

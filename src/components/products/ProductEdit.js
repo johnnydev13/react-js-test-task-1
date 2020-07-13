@@ -32,6 +32,18 @@ export default class ProductEdit extends React.Component {
         isEdit:       false,
     };
 
+    componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+
+    escFunction = (event) => {
+        if(event.keyCode === 27) {
+            if (store.getState().modal.isVisible) {
+                this.closeForm();
+            }
+        }
+    };
+
     static getDerivedStateFromProps(props, state) {
         if (props.id !== state.key) {
             let newState = Object.assign({}, props);
@@ -47,6 +59,18 @@ export default class ProductEdit extends React.Component {
 
     closeForm = () => {
         store.dispatch(addProductHide());
+    };
+
+    handleModalKeyDown = (event) => {
+        console.log(event.key)
+    };
+
+    handleModalClick = (event) => {
+        if (event.target.className !== 'modal-container') {
+            return false;
+        }
+
+        this.closeForm();
     };
 
     handleIdChange = event => {
@@ -173,7 +197,7 @@ export default class ProductEdit extends React.Component {
         }
 
         return (
-            <div className='modal-container'>
+            <div className='modal-container' onMouseDown={this.handleModalClick}>
                 <Modal.Dialog className='modal'>
                     <Modal.Header closeButton onHide={this.closeForm}>
                         <Modal.Title>
